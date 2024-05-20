@@ -1,16 +1,10 @@
-// import Child1 from "./components/Child1";
-// import Child2 from "./components/Child2";
-import CreateNotes from "./components/notes/CreateNotes";
-import ListNotes from "./components/notes/ListNotes";
-
+import Navbar from "../src/components/e-commerce/navbar/Navbar";
+import ProductList from "../src/components/e-commerce/productList/ProductList";
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
-      {/* <Child1 />
-      <Child2 /> */}
-      <CreateNotes />
-      <ListNotes />
+      <Navbar />
+      <ProductList />
     </div>
   );
 }

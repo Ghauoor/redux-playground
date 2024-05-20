@@ -22,7 +22,7 @@ function ProductList() {
   return (
     <div className="ProductList">
       {products.map((item) => (
-        <SingleProduct product={item} />
+        <SingleProduct product={item} key={item.id} />
       ))}
     </div>
   );
