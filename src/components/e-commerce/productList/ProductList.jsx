@@ -1,24 +1,30 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProducts } from "../../../redux/slices/productSlice";
+import { fetchData } from "../../../redux/slices/productSlice";
 import SingleProduct from "../singleProduct/SingleProduct";
 import "./ProductList.css";
-
-const URL = "https://fakestoreapi.com/products";
+import { AiOutlineLoading } from "react-icons/ai";
 
 function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.productReducer.products);
-  console.log("products", products);
-  async function fetchData() {
-    const response = await fetch(URL);
-    const data = await response.json();
+  const error = useSelector((state) => state.productReducer.error);
 
-    dispatch(loadProducts(data));
-  }
+  const status = useSelector((state) => state.productReducer.status);
+
+  console.log(status);
   useEffect(() => {
-    fetchData();
+    dispatch(fetchData());
   }, []);
+
+  if (status === "loading") {
+    return <AiOutlineLoading />;
+  }
+
+  if (status === "Failed") {
+    return <h2>Error...{error}</h2>;
+  }
+
   return (
     <div className="ProductList">
       {products.map((item) => (
